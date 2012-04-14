@@ -1,0 +1,12 @@
+{ "name": "share-auth"
+, "description": "A pattern matching based auth for ShareJS"
+, "version": "0.0.1"
+, "authors": [ "Perrin Westrich <crypticswarm@gmail.com>" ]
+, "repository":
+  { "type": "git" }
+, "main": "./share-auth.js"
+, "dependencies":
+  { "js-matcher": ""
+  , "connect": ""
+  }
+}
