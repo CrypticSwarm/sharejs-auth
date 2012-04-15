@@ -34,7 +34,7 @@ var express = require('express')
     , delete: [[{}, false]]
     }
   , shareOpts = {
-      auth: require('./shareauth')(app, sessionStore, patterns)
+      auth: shareauth(app, sessionStore, patterns)
     }
 
 
@@ -53,8 +53,8 @@ The module returns a single function. That requires the following:
 Only the [create, read, update, delete] keys are used and each of these values should have a list of patterns.  See mapMatch in the [js-match](https://github.com/CrypticSwarm/js-matcher). Matches should return `true` to accept the action and `false` to reject the action.
 
 * *create* - Matches against { s: *session object from who the request came from* } defaults to accept.
-* *read* - Matches against { s: *session*, d: *document snapshot* } defaults to accept.
-* *update* - Matches against { s: *session*, d: *document snapshot*, op: *operation to be performed* defaults to accept.
+* *read*   - Matches against { s: *session*, d: *document snapshot* } defaults to accept.
+* *update* - Matches against { s: *session*, d: *document snapshot*, op: *operation } to be performed* defaults to accept.
 * *delete* - Matches against { s: *session*, d: *document snapshot* } defaults to reject.
 
 ### Returns
@@ -65,7 +65,7 @@ It emits the create, read, update, delete events when a action is accepted by th
 This allows the abilty to extend the functionality of the server.
 
 ```javascript
-var auth = require('./shareauth')(app, sessionStore, patterns)
+var auth = require('shareauth')(app, sessionStore, patterns)
 auth.emitter.on('create', function (action, session) {
   //do something when a document has been created. 
 })
